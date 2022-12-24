@@ -1,0 +1,19 @@
+.main-content {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+textarea {
+  resize: none;
+}
+
+label,
+button {
+  display: block;
+}
