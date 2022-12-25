@@ -44,7 +44,8 @@ body {
   border-radius: 25px;
 }
 
-.mensaje {
+.container__ilustracion,
+.container__ilustracion__aviso {
   display: flex;
   flex-direction: column;
 }

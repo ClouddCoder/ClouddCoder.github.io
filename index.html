@@ -20,7 +20,7 @@
               id="texto-ingresado"
               placeholder="Ingrese el texto aquí"
               rows="25"
-              data-pattern="^[a-z]+$"
+              data-pattern="^[a-z\s]+$"
             ></textarea>
             <span id="mensaje-error" class="none">Solo letras minúsculas y sin acentos</span>
             <div class="botones">
@@ -30,9 +30,11 @@
           </form>
         </div>
         <div class="container__form-texto-respuesta">
-          <div class="imagen-no-mensaje">
-            <img src="assets/Muñeco.png" alt="Ningun mensaje encontrado" />
-            <div class="mensaje">
+          <div class="container__ilustracion">
+            <div class="container-imagen">
+              <img src="assets/Muñeco.png" alt="Ningun mensaje encontrado" />
+            </div>
+            <div class="container__ilustracion__aviso">
               <span>Ningún mensaje fue encontrado</span>
               <span>Ingresa el texto que deseas encriptar o desencriptar</span>
             </div>

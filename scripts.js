@@ -5,7 +5,7 @@ const formTextoRespuesta = document.querySelector(".form-texto-respuesta");
 const textoIngresado = document.getElementById("texto-ingresado");
 const textoRespuesta = document.getElementById("texto-respuesta");
 const mensajeError = document.getElementById("mensaje-error");
-const imagenMuñeco = document.querySelector(".imagen-no-mensaje");
+const avisoSinTexto = document.querySelector(".container__ilustracion");
 const letras = ["e", "i", "a", "o", "u"];
 const letrasEncriptadas = ["enter", "imes", "ai", "ober", "ufat"];
 const letrasRegex = new RegExp("e|i|a|o|u", "g");
@@ -68,6 +68,22 @@ function changeButtonStatus(disable) {
   }
 }
 
+function enableResponseTextInput() {
+  avisoSinTexto.classList.add("none");
+  formTextoRespuesta.classList.remove("none");
+  botonCopiar.classList.remove("none");
+}
+
+document.addEventListener("click", (e) => {
+  if (e.target.matches("#btn-encriptar")) {
+    encriptar(true, letrasRegex);
+    enableResponseTextInput();
+  } else if (e.target.matches("#btn-desencriptar")) {
+    encriptar(false, letrasEncriptadasRegex);
+    enableResponseTextInput();
+  }
+});
+
 textoIngresado.addEventListener("keyup", () => {
   const pattern = textoIngresado.dataset.pattern;
   const regex = new RegExp(pattern);
@@ -77,20 +93,6 @@ textoIngresado.addEventListener("keyup", () => {
       ? changeButtonStatus(true)
       : changeButtonStatus(false);
   }
-});
-
-botonEncriptar.addEventListener("click", () => {
-  encriptar(true, letrasRegex);
-  imagenMuñeco.classList.add("none");
-  formTextoRespuesta.classList.remove("none");
-  botonCopiar.classList.remove("none");
-});
-
-botonDesencriptar.addEventListener("click", () => {
-  encriptar(false, letrasEncriptadasRegex);
-  imagenMuñeco.classList.add("none");
-  formTextoRespuesta.classList.remove("none");
-  botonCopiar.classList.remove("none");
 });
 
 botonCopiar.addEventListener("click", () => {
