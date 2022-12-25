@@ -44,6 +44,11 @@ body {
   border-radius: 25px;
 }
 
+.mensaje {
+  display: flex;
+  flex-direction: column;
+}
+
 .container__form-texto-ingresado,
 .container__form-texto-respuesta {
   display: flex;

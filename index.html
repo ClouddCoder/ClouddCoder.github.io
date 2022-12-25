@@ -14,7 +14,7 @@
     <main class="main-content">
       <div class="container">
         <div class="container__form-texto-ingresado">
-          <form class="texto-ingresado">
+          <form class="form-texto-ingresado">
             <textarea
               name="texto"
               id="texto-ingresado"
@@ -30,14 +30,21 @@
           </form>
         </div>
         <div class="container__form-texto-respuesta">
-          <form class="texto-respuesta">
+          <div class="imagen-no-mensaje">
+            <img src="assets/Muñeco.png" alt="Ningun mensaje encontrado" />
+            <div class="mensaje">
+              <span>Ningún mensaje fue encontrado</span>
+              <span>Ingresa el texto que deseas encriptar o desencriptar</span>
+            </div>
+          </div>
+          <form class="form-texto-respuesta none">
             <textarea
               name="respuesta"
               id="texto-respuesta"
               placeholder="Ingrese el texto aquí"
               rows="25"
             ></textarea>
-            <button id="btn-copiar" type="button">Copiar</button>
+            <button id="btn-copiar" class="none" type="button">Copiar</button>
           </form>
         </div>
       </div>
