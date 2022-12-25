@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif;
 }
 
 html,
@@ -76,6 +77,12 @@ textarea {
 
 textarea:focus {
   outline: none;
+}
+
+textarea::placeholder {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #0a3871;
 }
 
 .botones {
