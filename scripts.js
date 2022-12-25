@@ -3,6 +3,7 @@ const botonDesencriptar = document.getElementById("btn-desencriptar");
 const botonCopiar = document.getElementById("btn-copiar");
 const textoIngresado = document.getElementById("texto-ingresado");
 const textoRespuesta = document.getElementById("texto-respuesta");
+const mensajeError = document.getElementById("mensaje-error");
 const letras = ["e", "i", "a", "o", "u"];
 const letrasEncriptadas = ["enter", "imes", "ai", "ober", "ufat"];
 const letrasRegex = new RegExp("e|i|a|o|u", "g");
@@ -49,14 +50,30 @@ function encriptar(encrypt, regex) {
   textoIngresado.value = "";
 }
 
+function changeButtonStatus(disable) {
+  if (disable) {
+    mensajeError.classList.add("is-active");
+    botonEncriptar.classList.add("disabled", "noHover");
+    botonEncriptar.disabled = true;
+    botonDesencriptar.classList.add("disabled", "noHover");
+    botonDesencriptar.disabled = true;
+  } else {
+    mensajeError.classList.remove("is-active");
+    botonEncriptar.classList.remove("disabled", "noHover");
+    botonEncriptar.disabled = false;
+    botonDesencriptar.classList.remove("disabled", "noHover");
+    botonDesencriptar.disabled = false;
+  }
+}
+
 textoIngresado.addEventListener("keyup", () => {
   const pattern = textoIngresado.dataset.pattern;
   const regex = new RegExp(pattern);
 
   if (pattern && textoIngresado.value !== "") {
     return !regex.exec(textoIngresado.value)
-      ? document.getElementById("mensaje-error").classList.add("is-active")
-      : document.getElementById("mensaje-error").classList.remove("is-active");
+      ? changeButtonStatus(true)
+      : changeButtonStatus(false);
   }
 });
 
