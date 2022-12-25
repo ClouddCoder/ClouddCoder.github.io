@@ -21,7 +21,9 @@
             placeholder="Ingrese el texto aquí"
             rows="35"
             cols="90"
+            data-pattern="^[a-z]+$"
           ></textarea>
+          <span id="mensaje-error" class="none">Solo letras minúsculas y sin acentos</span>
           <div class="botones">
             <button id="btn-encriptar" type="button">Encriptar</button>
             <button id="btn-desencriptar" type="button">Desencriptar</button>

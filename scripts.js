@@ -49,6 +49,17 @@ function encriptar(encrypt, regex) {
   textoIngresado.value = "";
 }
 
+textoIngresado.addEventListener("keyup", () => {
+  const pattern = textoIngresado.dataset.pattern;
+  const regex = new RegExp(pattern);
+
+  if (pattern && textoIngresado.value !== "") {
+    return !regex.exec(textoIngresado.value)
+      ? document.getElementById("mensaje-error").classList.add("is-active")
+      : document.getElementById("mensaje-error").classList.remove("is-active");
+  }
+});
+
 botonEncriptar.addEventListener("click", () => {
   encriptar(true, letrasRegex);
 });
