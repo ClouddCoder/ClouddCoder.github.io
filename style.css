@@ -211,7 +211,7 @@ span {
   display: block;
 }
 
-/* AQUI COMIENZA EL CSS PARA VISTA TABLET */
+/* ESTILO PARA VISTA TABLET */
 @media only screen and (min-width: 601px) {
   .container__form-texto-ingresado {
     min-height: 650px;
@@ -230,7 +230,7 @@ span {
   }
 }
 
-/* AQUI COMIENZA EL CSS PARA VISTA DESKTOP */
+/* ESTILO PARA VISTA DESKTOP */
 @media only screen and (min-width: 992px) {
   .header-titulo {
     margin: 30px;

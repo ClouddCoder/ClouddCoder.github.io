@@ -19,22 +19,16 @@ let clipboardIsAvailable = false;
 document.addEventListener("click", (e) => {
   if (e.target.matches("#btn-encriptar")) {
     encriptar(true, letrasRegex);
-    onInput(textoIngresado);
   } else if (e.target.matches("#btn-desencriptar")) {
     encriptar(false, letrasEncriptadasRegex);
-    onInput(textoIngresado);
   }
+  onInput(textoIngresado);
 });
 
 /**
- * Delega el evento de input a los textareas
+ * Ajusta el alto del textarea cada vez que se escribe
  */
-document.addEventListener("input", (e) => {
-  if (e.target.matches("#texto-ingresado") || e.target.matches("#texto-respuesta")) {
-    const textArea = e.target;
-    onInput(textArea);
-  }
-});
+textoIngresado.addEventListener("input", () => onInput(textoIngresado));
 
 /**
  * Ajusta el alto del textarea de acuerdo al contenido
@@ -76,7 +70,7 @@ function copiarTexto() {
  * @param {array} regex - Expresión regular para reemplazar
  */
 function encriptar(encrypt, regex) {
-  // Borra el texto de respuesta anterior
+  // Borra el texto de la respuesta anterior
   fraseConvertida = "";
   let value = textoIngresado.value;
 
@@ -123,7 +117,7 @@ function changeButtonStatus(disable) {
 
 /**
  * Muestra u oculta el textarea de respuesta o la ilustración
- * @param {boolean} enable
+ * @param {boolean} enable - Indica si se muestra o oculta el textarea de respuesta
  */
 function enableResponseTextInput(enable = true) {
   if (enable) {
