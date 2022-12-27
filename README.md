@@ -30,3 +30,7 @@ Actualmente la aplicación se encuentra desplegada con GitHub Pages, por ende cu
 ```
 https://clouddcoder.github.io/encriptador-alura/
 ```
+## Construido con
+- HTML
+- CSS
+- JavaScript
