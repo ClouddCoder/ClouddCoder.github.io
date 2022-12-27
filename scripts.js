@@ -16,10 +16,24 @@ let clipboardIsAvailable = false;
 document.addEventListener("click", (e) => {
   if (e.target.matches("#btn-encriptar")) {
     encriptar(true, letrasRegex);
+    onInput(textoIngresado);
   } else if (e.target.matches("#btn-desencriptar")) {
     encriptar(false, letrasEncriptadasRegex);
+    onInput(textoIngresado);
   }
 });
+
+document.addEventListener("input", (e) => {
+  if (e.target.matches("#texto-ingresado") || e.target.matches("#texto-respuesta")) {
+    const textArea = e.target;
+    onInput(textArea);
+  }
+});
+
+function onInput(textArea) {
+  textArea.style.height = "auto";
+  textArea.style.height = textArea.scrollHeight + "px";
+}
 
 navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
   if (result.state === "granted" || result.state === "prompt") {
@@ -57,6 +71,7 @@ function encriptar(encrypt, regex) {
     textoRespuesta.value = fraseConvertida;
     textoIngresado.value = "";
     enableResponseTextInput();
+    onInput(textoRespuesta);
   } else {
     enableResponseTextInput(false);
   }
