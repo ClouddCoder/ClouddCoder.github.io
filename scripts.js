@@ -13,6 +13,9 @@ const letrasEncriptadasRegex = new RegExp("enter|imes|ai|ober|ufat", "g");
 let fraseConvertida = "";
 let clipboardIsAvailable = false;
 
+/**
+ * Delega los eventos de click a los botones de encriptar y desencriptar
+ */
 document.addEventListener("click", (e) => {
   if (e.target.matches("#btn-encriptar")) {
     encriptar(true, letrasRegex);
@@ -23,6 +26,9 @@ document.addEventListener("click", (e) => {
   }
 });
 
+/**
+ * Delega el evento de input a los textareas
+ */
 document.addEventListener("input", (e) => {
   if (e.target.matches("#texto-ingresado") || e.target.matches("#texto-respuesta")) {
     const textArea = e.target;
@@ -30,18 +36,29 @@ document.addEventListener("input", (e) => {
   }
 });
 
+/**
+ * Ajusta el alto del textarea de acuerdo al contenido
+ * @param {element} textArea - Elemento DOM textarea
+ */
 function onInput(textArea) {
   textArea.style.height = "auto";
   textArea.style.height = textArea.scrollHeight + "px";
 }
 
+/**
+ * Revisa si el navegador soporta la API de Clipboard
+ */
 navigator.permissions.query({ name: "clipboard-write" }).then((result) => {
   if (result.state === "granted" || result.state === "prompt") {
     clipboardIsAvailable = true;
   }
 });
 
+/**
+ * Copia el texto del textarea de respuesta al portapapeles
+ */
 function copiarTexto() {
+  // Si el navegador no soporta la API de Clipboard
   if (!clipboardIsAvailable) {
     textoRespuesta.select();
     document.execCommand("copy");
@@ -53,7 +70,13 @@ function copiarTexto() {
   }
 }
 
+/**
+ * Encripta o desencripta el texto ingresado
+ * @param {boolean} encrypt - Indica si se encripta o desencripta
+ * @param {array} regex - Expresión regular para reemplazar
+ */
 function encriptar(encrypt, regex) {
+  // Borra el texto de respuesta anterior
   fraseConvertida = "";
   let value = textoIngresado.value;
 
@@ -69,6 +92,7 @@ function encriptar(encrypt, regex) {
     }
 
     textoRespuesta.value = fraseConvertida;
+    // Borra el texto ingresado anterior
     textoIngresado.value = "";
     enableResponseTextInput();
     onInput(textoRespuesta);
@@ -77,6 +101,10 @@ function encriptar(encrypt, regex) {
   }
 }
 
+/**
+ * Habilita o deshabilita los botones de encriptar y desencriptar si hay un error en el texto ingresado
+ * @param {boolean} disable - Indica si se deshabilita o habilita el botón
+ */
 function changeButtonStatus(disable) {
   if (disable) {
     mensajeError.classList.add("is-active");
@@ -93,6 +121,10 @@ function changeButtonStatus(disable) {
   }
 }
 
+/**
+ * Muestra u oculta el textarea de respuesta o la ilustración
+ * @param {boolean} enable
+ */
 function enableResponseTextInput(enable = true) {
   if (enable) {
     contenedorIlustracion.classList.add("none");
@@ -103,6 +135,9 @@ function enableResponseTextInput(enable = true) {
   }
 }
 
+/**
+ * Revisa si el texto ingresado cumple con el patrón
+ */
 textoIngresado.addEventListener("keyup", () => {
   const pattern = textoIngresado.dataset.pattern;
   const regex = new RegExp(pattern);
@@ -114,6 +149,9 @@ textoIngresado.addEventListener("keyup", () => {
   }
 });
 
+/**
+ * Copia el texto del textarea de respuesta al portapapeles
+ */
 botonCopiar.addEventListener("click", () => {
   copiarTexto();
 });

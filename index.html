@@ -15,7 +15,7 @@
   </head>
   <body>
     <header class="header">
-      <div class="header-logo"><img src="assets/Logo.png" alt="Logo Alura" /></div>
+      <div class="header-titulo"><h1>Encriptador</h1></div>
     </header>
     <main class="main-content">
       <div class="container">
@@ -27,10 +27,12 @@
               placeholder="Ingrese el texto aquí"
               data-pattern="^[a-z\s]+$"
             ></textarea>
-            <span id="mensaje-error" class="none">Solo letras minúsculas y sin acentos</span>
-            <div class="botones">
-              <button id="btn-encriptar" type="button">Encriptar</button>
-              <button id="btn-desencriptar" type="button">Desencriptar</button>
+            <div class="container__error-botones">
+              <span id="mensaje-error" class="none">Solo letras minúsculas y sin acentos</span>
+              <div class="botones">
+                <button id="btn-encriptar" type="button">Encriptar</button>
+                <button id="btn-desencriptar" type="button">Desencriptar</button>
+              </div>
             </div>
           </form>
         </div>
